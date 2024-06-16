@@ -5,31 +5,35 @@ import java.time.LocalDate;
 import com.ekan.dto.DocumentoDTO;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
-@Entity
+@Embeddable
 public class Documento {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	/*
+	 * @Id
+	 * 
+	 * @GeneratedValue(strategy = GenerationType.IDENTITY)
+	 * 
+	 * @Column(name="documento_id") private Long id;
+	 */
 	@Column(name="tipo_documento")
 	@Enumerated(EnumType.STRING)
 	private TipoDocumento tipoDocumento;
+	
 	private String descricao;
+	
 	@Column(name="data_inclusao")
 	private LocalDate dataInclusao;
+	
 	@Column(name="data_atualizacao")
 	private LocalDate dataAtualizacao;
 	
 	public static Documento converter(DocumentoDTO documentoDTO) {
 		Documento documento = new Documento();
-		documento.setId(documentoDTO.getId());
+		//documento.setId(documentoDTO.getId());
 		documento.setTipoDocumento(documentoDTO.getTipoDocumento());
 		documento.setDescricao(documentoDTO.getDescricao());
 		documento.setDataInclusao(documentoDTO.getDataInclusao());
@@ -37,12 +41,10 @@ public class Documento {
 		return documento;
 	}
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	/*
+	 * public Long getId() { return id; } public void setId(Long id) { this.id = id;
+	 * }
+	 */
 	public String getDescricao() {
 		return descricao;
 	}

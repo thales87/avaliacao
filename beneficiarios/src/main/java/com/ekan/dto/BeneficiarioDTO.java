@@ -1,6 +1,8 @@
 package com.ekan.dto;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.ekan.modelo.Beneficiario;
 
@@ -9,6 +11,7 @@ public class BeneficiarioDTO {
 	private Long id;
 	private String nome;
 	private String telefone;
+	private List<DocumentoDTO> documentos;
 	private LocalDate dataNascimento;
 	private LocalDate dataInclusao;
 	private LocalDate dataAtualizacao;
@@ -21,6 +24,11 @@ public class BeneficiarioDTO {
 		beneficiarioDTO.setDataNascimento(beneficiario.getDataNascimento());
 		beneficiarioDTO.setDataInclusao(beneficiario.getDataInclusao());
 		beneficiarioDTO.setDataAtualizacao(beneficiario.getDataAtualizacao());
+		beneficiarioDTO.setDocumentos(beneficiario
+				.getDocumentos()
+				.stream()
+				.map(DocumentoDTO::converter)
+				.collect(Collectors.toList()));
 		return beneficiarioDTO;
 	}
 
@@ -70,6 +78,14 @@ public class BeneficiarioDTO {
 
 	public void setDataAtualizacao(LocalDate dataAtualizacao) {
 		this.dataAtualizacao = dataAtualizacao;
+	}
+
+	public List<DocumentoDTO> getDocumentos() {
+		return documentos;
+	}
+
+	public void setDocumentos(List<DocumentoDTO> documentos) {
+		this.documentos = documentos;
 	}
 
 }

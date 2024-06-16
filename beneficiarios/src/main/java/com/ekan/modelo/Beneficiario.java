@@ -1,14 +1,20 @@
 package com.ekan.modelo;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.ekan.dto.BeneficiarioDTO;
 
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 
 @Entity
 public class Beneficiario {
@@ -18,6 +24,11 @@ public class Beneficiario {
 	private Long id;
 	private String nome;
 	private String telefone;
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "documento", joinColumns = @JoinColumn(name = "beneficiario_id"))
+	private List<Documento> documentos;
+	
 	@Column(name = "data_nascimento")
 	private LocalDate dataNascimento;
 	@Column(name = "data_inclusao")
@@ -33,6 +44,11 @@ public class Beneficiario {
 		beneficiario.setDataNascimento(beneficiarioDTO.getDataNascimento());
 		beneficiario.setDataInclusao(beneficiarioDTO.getDataInclusao());
 		beneficiario.setDataAtualizacao(beneficiarioDTO.getDataAtualizacao());
+		beneficiario.setDocumentos(beneficiarioDTO
+				.getDocumentos()
+				.stream()
+				.map(Documento::converter)
+				.collect(Collectors.toList()));
 		return beneficiario;
 	}
 
@@ -82,6 +98,14 @@ public class Beneficiario {
 
 	public void setDataAtualizacao(LocalDate dataAtualizacao) {
 		this.dataAtualizacao = dataAtualizacao;
+	}
+
+	public List<Documento> getDocumentos() {
+		return documentos;
+	}
+
+	public void setDocumentos(List<Documento> documentos) {
+		this.documentos = documentos;
 	}
 
 }
