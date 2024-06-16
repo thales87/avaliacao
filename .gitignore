@@ -1,0 +1,13 @@
+documentos/HELP.md
+documentos/target/
+documentos/.classpath
+documentos/.project
+documentos/.settings/
+documentos/.mvn/
+
+beneficiarios/HELP.md
+beneficiarios/target/
+beneficiarios/.classpath
+beneficiarios/.project
+beneficiarios/.settings/
+beneficiarios/.mvn/
