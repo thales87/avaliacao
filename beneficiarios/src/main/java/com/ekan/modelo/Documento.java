@@ -12,13 +12,6 @@ import jakarta.persistence.Enumerated;
 @Embeddable
 public class Documento {
 
-	/*
-	 * @Id
-	 * 
-	 * @GeneratedValue(strategy = GenerationType.IDENTITY)
-	 * 
-	 * @Column(name="documento_id") private Long id;
-	 */
 	@Column(name="tipo_documento")
 	@Enumerated(EnumType.STRING)
 	private TipoDocumento tipoDocumento;
@@ -33,7 +26,6 @@ public class Documento {
 	
 	public static Documento converter(DocumentoDTO documentoDTO) {
 		Documento documento = new Documento();
-		//documento.setId(documentoDTO.getId());
 		documento.setTipoDocumento(documentoDTO.getTipoDocumento());
 		documento.setDescricao(documentoDTO.getDescricao());
 		documento.setDataInclusao(documentoDTO.getDataInclusao());
@@ -41,10 +33,6 @@ public class Documento {
 		return documento;
 	}
 	
-	/*
-	 * public Long getId() { return id; } public void setId(Long id) { this.id = id;
-	 * }
-	 */
 	public String getDescricao() {
 		return descricao;
 	}

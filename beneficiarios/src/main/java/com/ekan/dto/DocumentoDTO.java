@@ -10,8 +10,6 @@ import jakarta.validation.constraints.NotNull;
 
 public class DocumentoDTO {
 
-	//private Long id;
-	
 	@NotNull
 	private TipoDocumento tipoDocumento;
 	
@@ -26,7 +24,6 @@ public class DocumentoDTO {
 	
 	public static DocumentoDTO converter(Documento documento) {
 		DocumentoDTO documentoDTO = new DocumentoDTO();
-		//documentoDTO.setId(documento.getId());
 		documentoDTO.setTipoDocumento(documento.getTipoDocumento());
 		documentoDTO.setDescricao(documento.getDescricao());
 		documentoDTO.setDataInclusao(documento.getDataInclusao());
@@ -34,10 +31,6 @@ public class DocumentoDTO {
 		return documentoDTO;
 	}
 	
-	/*
-	 * public Long getId() { return id; } public void setId(Long id) { this.id = id;
-	 * }
-	 */
 	public TipoDocumento getTipoDocumento() {
 		return tipoDocumento;
 	}
