@@ -6,6 +6,15 @@ import java.util.stream.Collectors;
 
 import com.ekan.modelo.Beneficiario;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class BeneficiarioDTO {
 
 	private Long id;
@@ -15,7 +24,8 @@ public class BeneficiarioDTO {
 	private LocalDate dataNascimento;
 	private LocalDate dataInclusao;
 	private LocalDate dataAtualizacao;
-
+	
+	//trocar por algum mecanismo de dto transformation
 	public static BeneficiarioDTO converter(Beneficiario beneficiario) {
 		BeneficiarioDTO beneficiarioDTO = new BeneficiarioDTO();
 		beneficiarioDTO.setId(beneficiario.getId());
@@ -30,62 +40,6 @@ public class BeneficiarioDTO {
 				.map(DocumentoDTO::converter)
 				.collect(Collectors.toList()));
 		return beneficiarioDTO;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	public LocalDate getDataNascimento() {
-		return dataNascimento;
-	}
-
-	public void setDataNascimento(LocalDate dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
-
-	public LocalDate getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(LocalDate dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
-	public LocalDate getDataAtualizacao() {
-		return dataAtualizacao;
-	}
-
-	public void setDataAtualizacao(LocalDate dataAtualizacao) {
-		this.dataAtualizacao = dataAtualizacao;
-	}
-
-	public List<DocumentoDTO> getDocumentos() {
-		return documentos;
-	}
-
-	public void setDocumentos(List<DocumentoDTO> documentos) {
-		this.documentos = documentos;
 	}
 
 }

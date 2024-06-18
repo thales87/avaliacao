@@ -13,6 +13,13 @@ import com.ekan.repository.BeneficiarioRepository;
 @Service
 public class BeneficiarioService {
 
+	//Verificar documentos
+	//criar metodo atualizar
+	//adicionar swagger
+	//usar keycloak(criar brach pra nao baguncar)
+	//criar exceções simples e claras
+	//focar nos requisitos
+	
 	@Autowired
 	private BeneficiarioRepository beneficiarioRepository;
 	
@@ -29,6 +36,7 @@ public class BeneficiarioService {
 		if(beneficiario.isPresent()) {
 			return BeneficiarioDTO.converter(beneficiario.get());
 		}
+		//lancar excecao beneficiarionaoencontrado
 		return null;
 	}
 	

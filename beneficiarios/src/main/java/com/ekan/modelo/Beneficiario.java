@@ -6,16 +6,24 @@ import java.util.stream.Collectors;
 
 import com.ekan.dto.BeneficiarioDTO;
 
-import jakarta.persistence.CollectionTable;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Beneficiario {
 
@@ -25,8 +33,8 @@ public class Beneficiario {
 	private String nome;
 	private String telefone;
 	
-	@ElementCollection(fetch = FetchType.EAGER)
-	@CollectionTable(name = "documento", joinColumns = @JoinColumn(name = "beneficiario_id"))
+	@OneToMany (fetch = FetchType.EAGER,cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "beneficiario_id")
 	private List<Documento> documentos;
 	
 	@Column(name = "data_nascimento")
@@ -36,6 +44,7 @@ public class Beneficiario {
 	@Column(name = "data_atualizacao")
 	private LocalDate dataAtualizacao;
 
+	//trocar por algum mecanismo de dto transformation
 	public static Beneficiario converter(BeneficiarioDTO beneficiarioDTO) {
 		Beneficiario beneficiario = new Beneficiario();
 		beneficiario.setId(beneficiarioDTO.getId());
@@ -50,62 +59,6 @@ public class Beneficiario {
 				.map(Documento::converter)
 				.collect(Collectors.toList()));
 		return beneficiario;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	public LocalDate getDataNascimento() {
-		return dataNascimento;
-	}
-
-	public void setDataNascimento(LocalDate dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
-
-	public LocalDate getDataInclusao() {
-		return dataInclusao;
-	}
-
-	public void setDataInclusao(LocalDate dataInclusao) {
-		this.dataInclusao = dataInclusao;
-	}
-
-	public LocalDate getDataAtualizacao() {
-		return dataAtualizacao;
-	}
-
-	public void setDataAtualizacao(LocalDate dataAtualizacao) {
-		this.dataAtualizacao = dataAtualizacao;
-	}
-
-	public List<Documento> getDocumentos() {
-		return documentos;
-	}
-
-	public void setDocumentos(List<Documento> documentos) {
-		this.documentos = documentos;
 	}
 
 }

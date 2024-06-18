@@ -2,6 +2,15 @@ package com.ekan.usuario.dto;
 
 import com.ekan.usuario.modelo.Usuario;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class UsuarioDTO {
 
 	private Long id;
@@ -14,25 +23,6 @@ public class UsuarioDTO {
 		usuarioDTO.setNome(usuario.getNome());
 		usuarioDTO.setChave(usuario.getChave());
 		return usuarioDTO;
-	}
-	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getChave() {
-		return chave;
-	}
-	public void setChave(String chave) {
-		this.chave = chave;
 	}
 	
 }

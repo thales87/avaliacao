@@ -31,6 +31,7 @@ public class BeneficiarioController {
 		return beneficiario;
 	}
 	
+	//Usar PUT para atualizacao total e patch para atualizacao parcial
 	@PostMapping("/beneficiarios")
 	public BeneficiarioDTO salvarBeneficiario(@RequestBody BeneficiarioDTO beneficiarioDTO) {
 		return beneficiarioService.salvar(beneficiarioDTO);

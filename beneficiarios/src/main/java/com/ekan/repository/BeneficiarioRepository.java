@@ -8,4 +8,6 @@ import com.ekan.modelo.Beneficiario;
 @Repository
 public interface BeneficiarioRepository extends JpaRepository<Beneficiario, Long>{
 
+	//Criar Repository pra documento
+	
 }
